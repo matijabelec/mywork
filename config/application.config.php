@@ -7,8 +7,8 @@
  */
 return array(
     'modules' => array(
-        'Application',
-        'Myworkapp'
+        //'Application',
+        'Myworkapp',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
