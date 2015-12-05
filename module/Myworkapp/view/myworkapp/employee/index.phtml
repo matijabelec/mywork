@@ -1,0 +1,35 @@
+<?php
+
+ $title = 'Employers';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('employee', array('action'=>'add') ); ?>">Add new employee</a>
+ </p>
+
+ <table class="table">
+ <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Birthdate</th>
+    <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($employers as $employee) : ?>
+ <tr>
+    <td><?php echo $this->escapeHtml($employee->firstname); ?></td>
+    <td><?php echo $this->escapeHtml($employee->lastname); ?></td>
+    <td><?php echo $this->dateFormat(strtotime($employee->birthdate),
+            IntlDateFormatter::MEDIUM,  // date
+            IntlDateFormatter::NONE, // time
+            'hr_HR' //"en_US"
+        ); 
+    ?></td>
+    <td>
+        <a href="#<?php /* echo $this->url('employee', array('action'=>'edit', 'id' => $employee->id) ); */ ?>">Edit</a>
+        <a href="<?php echo $this->url('employee', array('action'=>'delete', 'id' => $employee->id) ); ?>">Delete</a>
+    </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
+ 

@@ -6,14 +6,28 @@ return array(
             'home' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/[:controller[/:action]]',
+                    'route'    => '/[index][/:action]',
                     'constraints' => array(
-                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
                     'defaults' => array(
-                        'controller' => 'Myworkapp\Controller\Index',
+                        'controller' => 'index',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'employee' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/employee[/:action][/:id]',
+                    'constraints' => array(
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'         => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'employee',
+                        'action'     => 'index',
+                        'id'         => '0',
                     ),
                 ),
             ),
@@ -40,8 +54,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Myworkapp\Controller\Index' => 'Myworkapp\Controller\IndexController',
             'Index' => 'Myworkapp\Controller\IndexController',
+            'Employee' => 'Myworkapp\Controller\EmployeeController',
         ),
     ),
     'view_manager' => array(

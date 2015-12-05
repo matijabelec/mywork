@@ -25,10 +25,13 @@ class EmployeeTable {
         return $row;
     }
     
-    public function saveEmployee(Employee $employee)
-    {
+    public function saveEmployee(Employee $employee) {
         $data = array(
-            'name' => $employee->name,
+            'firstname' => $employee->firstname,
+            'lastname' => $employee->lastname,
+            'birthdate' => $employee->birthdate,
+            'date_created' => $employee->date_created,
+            'date_modified' => $employee->date_modified,
             'status'  => $employee->status,
         );
         
@@ -36,7 +39,7 @@ class EmployeeTable {
         if($id == 0) {
             $this->tableGateway->insert($data);
         } else {
-            if($this->getAlbum($id) ) {
+            if($this->getEmployee($id) ) {
                 $this->tableGateway->update($data, array('id' => $id) );
             } else {
                 throw new \Exception('Id does not exist');
