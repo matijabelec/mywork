@@ -35,11 +35,16 @@ class EmployeeTable {
             'status'  => $employee->status,
         );
         
+        $datetime_now = date('Y-m-d H:i:s');
+        
         $id = (int)$employee->id;
         if($id == 0) {
+            $data['date_created'] = $data['date_modified'] = $datetime_now;
+            $data['status'] = 1;
             $this->tableGateway->insert($data);
         } else {
             if($this->getEmployee($id) ) {
+                $data['date_modified'] = $datetime_now;
                 $this->tableGateway->update($data, array('id' => $id) );
             } else {
                 throw new \Exception('Id does not exist');
