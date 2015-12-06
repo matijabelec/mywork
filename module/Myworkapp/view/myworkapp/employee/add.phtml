@@ -8,20 +8,47 @@ $form->prepare();
 ?>
 
 <style>
-form {
-    
+.form-container{
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    margin: 10px auto 14px;
+    text-align: center;
 }
-form > div{
-    
+.form-container form{
+    display: inline-block;
+    position: relative;
+    padding: 10pt 6pt 12pt;
+    margin: 12pt auto 0;
+    border: 1px solid #0000aa;
+    min-width: 480px;
+}
+.form-container form label{
+    display: block;
+    padding-bottom: 8pt;
+}
+.form-container form label > span{
+    padding-right: 8px;
+}
+.form-container form .form-buttons{
+    text-align: right;
+    margin: 0 10px;
+}
+.form-container form .form-buttons input,
+.form-container form .form-buttons [type=submit]{
+    font-size: 12pt;
+    padding: 2pt 8pt;
 }
 </style>
 
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<?php echo $this->form()->openTag($form); ?>
-    <div><?php echo $this->formHidden($form->get('id') ); ?></div>
-    <div><?php echo $this->formRow($form->get('firstname') ); ?></div>
-    <div><?php echo $this->formRow($form->get('lastname') ); ?></div>
-    <div><?php echo $this->formRow($form->get('birthdate') ); ?></div>
-    <div><?php echo $this->formSubmit($form->get('submit') ); ?></div>
-<?php echo $this->form()->closeTag(); ?>
+<div class="form-container">
+    <?php echo $this->form()->openTag($form); ?>
+        <?php echo $this->formHidden($form->get('id') ); ?>
+        <?php echo $this->formRow($form->get('firstname') ); ?>
+        <?php echo $this->formRow($form->get('lastname') ); ?>
+        <?php echo $this->formRow($form->get('birthdate') ); ?>
+        <div class="form-buttons"><?php echo $this->formSubmit($form->get('submit') ); ?></div>
+    <?php echo $this->form()->closeTag(); ?>
+</div>
